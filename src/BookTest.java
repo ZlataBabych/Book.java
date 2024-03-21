@@ -1,81 +1,33 @@
 // Бабич З.А.
 // ООП на мові Java
-// Лабораторна робота 7
-// Кінцевий строк подання: 21 березня 2024
+// Лабораторна робота 8
+// Кінцевий строк подання: 28 березня 2024
 // Використано часу: 0.5 години
 // Це моя власна робота. Не було використано жодної несанкціонованої допомоги.
 
-// Це драйвер для класу Book для створення масиву об’єктів цього класу.
+// Це драйвер для класу Book
 
 import java.util.Scanner;
 
 public class BookTest {
     public static void main(String[] args) {
-        // Створення об'єкта книги
-        Scanner scanner = new Scanner(System.in);
+        Book book1 = new Book("C++", "Jack", 100, 2600);
 
-        System.out.print("Enter the number of books: ");
-        int numberOfBooks = scanner.nextInt();
+        Book book2 = new Book(book1);
 
-        while(numberOfBooks <= 0){
-            System.out.println("Enter correct number of books!");
-            System.out.print("Number of books: ");
-            numberOfBooks = scanner.nextInt();
-        }
+        Book book3 = new Book("C++", "Marina Bobova", 100, 2600);
 
-        scanner.nextLine(); // Очистити буфер після читання числа
 
-        Book[] books = new Book[numberOfBooks];
+        System.out.println("Copy of first book: " + book2.toString());
 
-        for (int i = 0; i < numberOfBooks; i++) {
-            System.out.println("Enter details for book " + (i + 1) + ":");
+        System.out.println("Is the first book equal to its copy? "
+                + book1.equals(book2));
 
-            System.out.print("Title: ");
-            String title = scanner.nextLine().trim();
+        System.out.println("Is the second book equal to thirt book? "
+                + book2.equals(book3));
 
-            while(title.isEmpty()){
-                System.out.println("Enter correct title!");
-                System.out.print("Title: ");
-                title = scanner.nextLine().trim();
-            }
+        System.out.println("Total number of books created: "
+                + Book.getBookCount());
 
-            System.out.print("Author: ");
-            String author = scanner.nextLine().trim();
-
-            while(author.isEmpty()){
-                System.out.println("Enter correct author!");
-                System.out.print("Author: ");
-                author = scanner.nextLine().trim();
-            }
-
-            System.out.print("Page count: ");
-            int pageCount = scanner.nextInt();
-
-            while(pageCount <= 0){
-                System.out.println("Enter correct count!");
-                System.out.print("Page count: ");
-                pageCount = scanner.nextInt();
-            }
-
-            System.out.print("Price: ");
-            double price = scanner.nextDouble();
-
-            while(price < 0){
-                System.out.println("Enter correct Price!");
-                System.out.print("Price: ");
-                price = scanner.nextDouble();
-            }
-
-            scanner.nextLine(); // Очистити буфер
-
-            books[i] = new Book(title, author, pageCount, price);
-        }
-
-        System.out.println("\nBooks Information:");
-        for (Book book : books) {
-            System.out.println(book.toString());
-        }
-
-        scanner.close();
     }
 }
