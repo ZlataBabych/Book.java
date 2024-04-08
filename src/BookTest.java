@@ -1,42 +1,49 @@
 // Бабич З.А.
 // ООП на мові Java
-// Лабораторна робота 9
-// Кінцевий строк подання: 09 квітня 2024
+// Лабораторна робота 10
+// Кінцевий строк подання: 15 квітня 2024
 // Використано часу: 1 година
 // Це моя власна робота. Не було використано жодної несанкціонованої допомоги.
 
-// Це драйвер для класу Book. Вын демонструє принцип агрегації для класу Book і Owner.
+// Це драйвер для класу Book. Він демонструє конструктор, конструктор копіювання,
+// гетери, метод equals та метод toString() для класу обгортки BookWrapper
 
 import java.util.Scanner;
 
 public class BookTest {
     public static void main(String[] args) {
-        Owner autor1 = new Owner("Jack Nool", "jack@gmail.com");
+        // Створення об'єкта BookWrapper через конструктор з параметрами
+        BookWrapper bookWrapper1 = new BookWrapper("Щоденник", "Антоніо Павло", 320, 250.50);
 
-        Book book1 = new Book("C++", autor1, 100, 2600);
+        // Виведення інформації про книгу через перевизначений метод toString()
+        System.out.println("Книга 1:\n" + bookWrapper1);
 
-        Book book2 = new Book(book1);
+        // Створення копії об'єкта Book через конструктор копіювання
+        Book bookForCopy = new Book("Научна література", "Марія Галушка", 1450, 7850.50);
+        BookWrapper bookWrapper2 = new BookWrapper(bookForCopy);
 
-        Owner autor2 = new Owner("Marina Bobova", "bobva@gmail.com");
+        // Використання гетерів
+        System.out.println("\nІнформація про книгу 2 з гетерів:");
+        System.out.println("Назва: " + bookWrapper2.getTitle());
+        System.out.println("Автор: " + bookWrapper2.getAuthor());
+        System.out.println("Кількість сторінок: " + bookWrapper2.getPageCount());
+        System.out.println("Ціна: " + bookWrapper2.getPrice());
 
-        Book book3 = new Book("C++", autor2 , 100, 2600);
+        // Порівняння двох об'єктів BookWrapper
+        System.out.println("\nКнига 1 еквівалентна Книзі 2? " + bookWrapper1.equals(bookWrapper2));
 
-        System.out.println("Copy of first book: " + book2.toString());
+        // Створення копії об'єкта Book через конструктор копіювання
+        Book bookForCopy2 = new Book("Щоденник", "Антоніо Павло", 320, 250.50);
+        BookWrapper bookWrapper3 = new BookWrapper(bookForCopy2);
 
-        System.out.println("Is the first book equal to its copy? "
-                + book1.equals(book2));
-        System.out.println("Is the second book equal to thirty book? "
-                + book2.equals(book3));
+        // Використання гетерів
+        System.out.println("\nІнформація про книгу 3 з гетерів:");
+        System.out.println("Назва: " + bookWrapper3.getTitle());
+        System.out.println("Автор: " + bookWrapper3.getAuthor());
+        System.out.println("Кількість сторінок: " + bookWrapper3.getPageCount());
+        System.out.println("Ціна: " + bookWrapper3.getPrice());
 
-        Owner autor3 = new Owner("Zlata Babych", "zlata@gmail.com");
-
-        System.out.println("Thirty book: " + book3.toString());
-
-        book3.setTitle("Java for beginners");
-        book3.setAuthor(autor3);
-        book3.setPageCount(375793);
-        book3.setPrice(12);
-
-        System.out.println("Changed thirty book: " + book3.toString());
+        // Порівняння двох об'єктів BookWrapper
+        System.out.println("\nКнига 1 еквівалентна Книзі 3? " + bookWrapper1.equals(bookWrapper3));
     }
 }

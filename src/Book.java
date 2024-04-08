@@ -3,7 +3,7 @@
  */
 public class Book {
     private String title; // Назва книги
-    private Owner author; // Автор книги
+    private String author; // Автор книги
     private int pageCount; // Кількість сторінок у книзі
     private double price; // Ціна книги
 
@@ -14,12 +14,12 @@ public class Book {
      * @param pageCount кількість сторінок у книзі
      * @param price ціна книги
      */
-    public Book(String title, Owner author, int pageCount, double price) {
+    public Book(String title, String author, int pageCount, double price) {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Invalid title");
         }
 
-        if (author == null) {
+        if (author == null || author.isBlank()) {
             throw new IllegalArgumentException("Invalid author");
         }
 
@@ -32,7 +32,7 @@ public class Book {
         }
 
         this.title = title;
-        this.author = new Owner(author);
+        this.author = author;
         this.pageCount = pageCount;
         this.price = price;
     }
@@ -47,7 +47,7 @@ public class Book {
         }
 
         this.title = another.title;
-        this.author = new Owner(another.author);
+        this.author = another.author;
         this.pageCount = another.pageCount;
         this.price = another.price;
     }
@@ -77,20 +77,20 @@ public class Book {
      * Гетер для отримання автора книги.
      * @return автор книги
      */
-    public Owner getAuthor() {
-        return new Owner(author);
+    public String getAuthor() {
+        return author;
     }
 
     /**
      * Сетер для встановлення автора книги.
      * @param author новий автор книги
      */
-    public void setAuthor(Owner author) {
-        if (author == null) {
+    public void setAuthor(String author) {
+        if (author == null || author.isBlank()) {
             throw new IllegalArgumentException("Invalid author");
         }
 
-        this.author = new Owner(author);
+        this.author = author;
     }
 
     /**
@@ -139,7 +139,7 @@ public class Book {
      */
     @Override
     public String toString() {
-        return "Title: " + title + ", Author: " + author.toString() +
+        return "Title: " + title + ", Author: " + author +
                 ", Page count: " + pageCount + ", Price: $" + price;
     }
 
