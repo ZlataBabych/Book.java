@@ -2,10 +2,8 @@
  * Клас, що представляє книгу з відповідними атрибутами та методами
  */
 public class Book {
-    private static int bookCount = 0;
-
     private String title; // Назва книги
-    private String author; // Автор книги
+    private Owner author; // Автор книги
     private int pageCount; // Кількість сторінок у книзі
     private double price; // Ціна книги
 
@@ -16,23 +14,12 @@ public class Book {
      * @param pageCount кількість сторінок у книзі
      * @param price ціна книги
      */
-    public Book(String title, String author, int pageCount, double price) {
-        if (title == null) {
+    public Book(String title, Owner author, int pageCount, double price) {
+        if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Invalid title");
         }
 
         if (author == null) {
-            throw new IllegalArgumentException("Invalid author");
-        }
-
-        title = title.trim();
-        author = author.trim();
-
-        if (title.isEmpty()) {
-            throw new IllegalArgumentException("Invalid title");
-        }
-
-        if (author.isEmpty()) {
             throw new IllegalArgumentException("Invalid author");
         }
 
@@ -45,11 +32,9 @@ public class Book {
         }
 
         this.title = title;
-        this.author = author;
+        this.author = new Owner(author);
         this.pageCount = pageCount;
         this.price = price;
-
-        bookCount++;
     }
 
     /**
@@ -62,20 +47,11 @@ public class Book {
         }
 
         this.title = another.title;
-        this.author = another.author;
+        this.author = new Owner(another.author);
         this.pageCount = another.pageCount;
         this.price = another.price;
-
-        bookCount++;
     }
 
-    /**
-     * Статичний гетер для отримання кількості створених об’єктів.
-     * @return кількість створених об’єктів
-     */
-    public static int getBookCount() {
-        return bookCount;
-    }
 
     /**
      * Гетер для отримання назви книги.
@@ -90,9 +66,10 @@ public class Book {
      * @param title нова назва книги
      */
     public void setTitle(String title) {
-        if (title == null || title.isEmpty()) {
+        if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Invalid title");
         }
+
         this.title = title;
     }
 
@@ -100,19 +77,20 @@ public class Book {
      * Гетер для отримання автора книги.
      * @return автор книги
      */
-    public String getAuthor() {
-        return author;
+    public Owner getAuthor() {
+        return new Owner(author);
     }
 
     /**
      * Сетер для встановлення автора книги.
      * @param author новий автор книги
      */
-    public void setAuthor(String author) {
-        if (author == null || author.isEmpty()) {
+    public void setAuthor(Owner author) {
+        if (author == null) {
             throw new IllegalArgumentException("Invalid author");
         }
-        this.author = author;
+
+        this.author = new Owner(author);
     }
 
     /**
@@ -131,6 +109,7 @@ public class Book {
         if (pageCount <= 0) {
             throw new IllegalArgumentException("Page count must be greater than 0");
         }
+
         this.pageCount = pageCount;
     }
 
@@ -150,6 +129,7 @@ public class Book {
         if (price < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
+
         this.price = price;
     }
 
@@ -159,7 +139,7 @@ public class Book {
      */
     @Override
     public String toString() {
-        return "Title: " + title + ", Author: " + author +
+        return "Title: " + title + ", Author: " + author.toString() +
                 ", Page count: " + pageCount + ", Price: $" + price;
     }
 
