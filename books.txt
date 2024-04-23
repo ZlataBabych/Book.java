@@ -1,0 +1,38 @@
+Book
+Super-puper-book
+Bob Dally
+530
+120.50
+Book
+Exceptions in Java
+Nick Johnson
+780
+992.99
+SchoolTextbook
+Math Essentials
+Jane Matherson
+200
+20.00
+Mathematics
+7
+SchoolTextbook
+Mathematics for Beginners
+John Doe
+300
+29.99
+Mathematics
+8
+EBook
+Advanced Programming
+Alice Johnson
+150
+19.95
+PDF
+0.5
+EBook
+C++ Programming
+Nike Johnson
+34000
+35.69
+PDF
+2.3
