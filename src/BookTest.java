@@ -46,8 +46,6 @@ public class BookTest {
 
         // Перевірка на рівність textbook2 та textbook3
         System.out.println("Are Textbook 2 and Textbook 3 equal? " + textbook2.equals(textbook3));
-
-        
     }
 }
 
